@@ -1,0 +1,16 @@
+FROM ubuntu:18.04
+
+RUN useradd -r litecoin \
+  && apt-get update -y \
+  && apt-get install -y software-properties-common \
+  && add-apt-repository ppa:bitcoin/bitcoin \
+  && apt-get update -y;
+RUN apt-get install -y curl build-essential gnupg automake autoconf dpkg-dev;
+RUN apt-get install -y libtool g++ libtool autotools-dev pkg-config bsdmainutils;
+RUN apt-get install -y libdb4.8-dev libdb4.8++-dev;
+RUN apt-get install -y libssl-dev libevent-dev;
+RUN apt-get install -y libboost-system-dev libboost-filesystem-dev libboost-chrono-dev \
+  libboost-program-options-dev libboost-test-dev libboost-thread-dev;
+RUN apt-get install -y libminiupnpc-dev libzmq3-dev;
+RUN apt-get clean \
+  && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* ;
